@@ -166,6 +166,7 @@
       100% { transform: rotate(-10deg) translateY(5px); }
     }
   </style>
+<link rel="stylesheet" href="/index.css">
 </head>
 <body>
   <div class="container">
@@ -173,20 +174,26 @@
     <section class="counter">
       <h3>Donuts Delivered... via email</h3>
       <div class="number" id="donutCount">
-        <span class="donut">🍩</span> <span id="countValue">531</span>
+        <span class="donut">🍩</span> <span id="countValue">639</span>
       </div>
     </section>
 
     <!-- 2. Header and Tagline -->
     <header>
       <h1>DollarDonuts</h1>
-      <p>Sweet treats for a sweeter cause — $12/dozen</p>
+      <p>Weekly digital donut subscriptions for a sweet cause</p>
     </header>
 
     <!-- 3. Action Buttons -->
-    <div class="button-group">
-      <a href="https://square.link/u/8I81VqXo" target="_blank" rel="noopener" class="buy-btn">Get your dozen!</a>
-      <a href="bulk-orders.html" class="bulk-btn">Bulk - Large Orders</a>
+    <div class="button-group" style="max-width: 650px;">
+      <a href="https://square.link/u/LyxfVzwJ" target="_blank" rel="noopener" class="buy-btn">3 dozen - $30/week</a>
+      <a href="https://square.link/u/VOwaSMDB" target="_blank" rel="noopener" class="buy-btn">4 dozen - $35/week</a>
+      <a href="https://square.link/u/P7aKDQVQ" target="_blank" rel="noopener" class="buy-btn">5 dozen - $40/week</a>
+      <a href="https://square.link/u/DocXwg9x" target="_blank" rel="noopener" class="buy-btn" style="position: relative;">
+        6 dozen - $45/week
+        <span style="position: absolute; top: -12px; right: -15px; background: #c9642d; color: white; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; border-radius: 12px; transform: rotate(5deg); box-shadow: 0 2px 4px rgba(0,0,0,0.2);">Best Deal!</span>
+      </a>
+      <a href="mailto:dollardonuts.com@gmail.com" class="bulk-btn">Need more? Email Us</a>
     </div>
 
     <!-- 4. Charity Info -->
@@ -194,40 +201,24 @@
       <p>All proceeds support <a href="https://www.catholiccharitiesusa.org/" target="_blank" rel="noopener">Catholic Charities USA's</a> many programs, from helping refugees learn English, supporting educational programs, to providing housing, food, and emotional support to the most vulnerable members of our community.</p>
     </section>
 
-    <!-- 5. Voucher Card Box -->
-    <div class="card">
-      <p style="color:var(--muted)">This is a voucher for a dozen glazed donuts, redeemable at any Krispy Kreme. No expiration date</p>
+    <!-- 5. Subscription How It Works -->
+    <div class="card" style="max-width: 600px; text-align: left;">
+      <h3 style="margin-bottom: 12px; color: var(--accent-dark);">How the Subscription Works</h3>
+      <p style="margin-bottom: 12px; color: var(--muted);">By subscribing, you will receive digital vouchers redeemable at any Krispy Kreme for glazed donuts. They have no expiration date!</p>
+      <p style="color: var(--muted);"><strong>Weekly Delivery:</strong> You'll receive your vouchers via email on <strong>Friday night</strong> for any orders placed during the previous week. The weekly cutoff time to purchase is <strong>Friday at 11:00 PM ET</strong>.</p>
     </div>
-
-    <!-- 6. Delivery Details -->
-    <section class="delivery-details">
-      <p>Every $12 voucher purchases a dozen donuts. Vouchers are digital — you will receive them to the email or phone number you provide at checkout by <strong>11:00 PM ET</strong> the same day. (Our system is still under construction, most orders are filled within minutes.)</p>
-    </section>
-
-    <!-- 7. Facts Section -->
-    <section class="facts">
-      <div class="card">
-        <strong>Better Price</strong>
-        <p>Our boxes are $12, Krispy Kreme charges $15.39.</p>
-      </div>
-      <div class="card">
-        <strong>Better Feeling</strong>
-        <p>Eating donuts <span class="highlight">can</span> make the world a better place. Over $4 from every dozen goes straight to Catholic Charities.*</p>
-      </div>
-    </section>
 
     <footer>
       <p>Questions? Email <a href="mailto:dollardonuts.com@gmail.com">dollardonuts.com@gmail.com</a></p>
       <p>Follow our <a href="https://www.instagram.com/dollar.donuts/">Instagram</a></p>
-      <p>DollarDonuts — All revenue to Catholic Charities USA</p>
-      <p>*Unless purchased with a partner referal code</p>
       <p><span class="highlight">Made by students with ❤️</span></p>
     </footer>
   </div>
 
   <script>
-    const INITIAL_DONUTS_SOLD = 531; 
+    const INITIAL_DONUTS_SOLD = 639; 
     document.getElementById('countValue').textContent = INITIAL_DONUTS_SOLD.toLocaleString();
   </script>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>
