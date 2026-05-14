@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manage Subscription — Dollar-Donuts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fffaf5;
+      --accent: #f7a072;
+      --accent-dark: #d97a4a;
+      --muted: #6b6b6b;
+      --max-width: 700px;
+    }
+    body {
+      font-family: Inter, sans-serif;
+      background-color: var(--bg);
+      color: #222;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: var(--max-width);
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--accent-dark);
+      text-align: center;
+    }
+    p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .policy-box {
+      background-color: #fff4eb;
+      border: 1px solid #fce2ce;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    .policy-box p {
+      margin: 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: 600;
+      color: #444;
+    }
+    select, input {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    button.submit-btn, a.button {
+      background-color: var(--accent);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      display: inline-block;
+      text-align: center;
+    }
+    button.submit-btn:hover, a.button:hover {
+      background-color: var(--accent-dark);
+    }
+    a.outline-btn {
+      background-color: transparent;
+      color: var(--muted);
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      display: inline-block;
+      text-align: center;
+    }
+    a.outline-btn:hover {
+      background-color: #f5f5f5;
+    }
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Manage Your Subscription</h1>
+    
+    <p>To easily make changes to your subscription, such as pausing or cancelling, you can use the <strong>Manage Subscription link</strong> found at the bottom of your original receipt email from Square.</p>
+    
+    <p>If you can't find the email, use the form below to send us a request, and we'll take care of it!</p>
+
+    <div class="policy-box">
+      <p><strong>Please note:</strong> Refunds are not available if you cancel after you have been billed for the week. However, please remember that your digital vouchers <strong>never expire</strong>!</p>
+    </div>
+
+    <form id="manageForm">
+      <label for="actionType">What would you like to do?</label>
+      <select id="actionType" required>
+        <option value="" disabled selected>Select an option...</option>
+        <option value="cancel">Cancel my subscription</option>
+        <option value="pause">Pause my subscription temporarily</option>
+      </select>
+
+      <div id="pauseWeeksGroup" class="hidden" style="flex-direction: column; gap: 15px;">
+        <label for="pauseWeeks">How long would you like to pause?</label>
+        <select id="pauseWeeks">
+          <option value="1 week">1 week</option>
+          <option value="2 weeks">2 weeks</option>
+          <option value="3 weeks">3 weeks</option>
+          <option value="4 weeks">4 weeks</option>
+        </select>
+      </div>
+
+      <label for="customerName">Name associated with the subscription</label>
+      <input type="text" id="customerName" placeholder="John Doe" required />
+
+      <label for="customerEmail">Email associated with the subscription</label>
+      <input type="email" id="customerEmail" placeholder="user@example.com" required />
+
+      <div class="button-group">
+        <button type="submit" class="submit-btn">Draft Request Email</button>
+        <a href="index.html" class="outline-btn">Back to Home</a>
+      </div>
+    </form>
+
+  </div>
+
+  <script>
+    const actionSelect = document.getElementById('actionType');
+    const pauseGroup = document.getElementById('pauseWeeksGroup');
+    
+    actionSelect.addEventListener('change', (e) => {
+      if (e.target.value === 'pause') {
+        pauseGroup.classList.remove('hidden');
+        pauseGroup.style.display = 'flex';
+      } else {
+        pauseGroup.classList.add('hidden');
+        pauseGroup.style.display = 'none';
+      }
+    });
+
+    document.getElementById('manageForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const action = actionSelect.value;
+      const name = document.getElementById('customerName').value;
+      const email = document.getElementById('customerEmail').value;
+      
+      let subject = '';
+      let body = '';
+
+      if (action === 'cancel') {
+        subject = `Cancel Subscription for ${name}`;
+        body = `Hello Dollar-Donuts Team,\n\nPlease cancel my subscription.\n\nName: ${name}\nEmail: ${email}\n\nThank you!`;
+      } else if (action === 'pause') {
+        const weeks = document.getElementById('pauseWeeks').value;
+        subject = `Pause Subscription for ${name}`;
+        body = `Hello Dollar-Donuts Team,\n\nPlease pause my subscription for ${weeks}.\n\nName: ${name}\nEmail: ${email}\n\nThank you!`;
+      }
+
+      window.location.href = `mailto:dollardonuts.com@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
