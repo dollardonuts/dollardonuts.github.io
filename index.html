@@ -160,6 +160,116 @@
       font-weight: bold;
       color: #c9642d;
     }
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+      width: 100%;
+      max-width: 500px;
+      background: var(--card);
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .slider-header {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin-bottom: 5px;
+    }
+    .slider-price {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-bottom: 25px;
+      position: relative;
+    }
+    .slider-badge {
+      position: absolute;
+      top: -15px;
+      right: -80px;
+      background: #c9642d;
+      color: white;
+      padding: 4px 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 12px;
+      transform: rotate(5deg);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    @media (max-width: 480px) {
+      .slider-badge {
+        right: -30px;
+        top: -25px;
+      }
+    }
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    .slider-btn {
+      background: #fff4eb;
+      border: 1px solid #fce2ce;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #c9642d;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .slider-btn:hover:not(:disabled) {
+      background: #fce2ce;
+    }
+    .slider-btn:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+    .slider-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .segmented-bar {
+      display: flex;
+      flex-grow: 1;
+      height: 24px;
+      gap: 3px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #eee;
+    }
+    .segment {
+      flex: 1;
+      background: #e2e2e2;
+      transition: background-color 0.2s ease;
+    }
+    .segment.active {
+      background: var(--accent);
+    }
+    .slider-checkout-btn {
+      display: inline-block;
+      color: white;
+      font-weight: bold;
+      padding: 18px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      text-align: center;
+      min-width: 250px;
+      background-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(247, 160, 114, 0.3);
+    }
+    .slider-checkout-btn:hover {
+      background-color: var(--accent-dark);
+      transform: translateY(-2px);
+    }
     @keyframes rotateBounce {
       0% { transform: rotate(-10deg) translateY(5px); }
       50% { transform: rotate(10deg) translateY(-5px); }
@@ -184,23 +294,41 @@
       <p>Who said donuts have to be bad for you?</p>
     </header>
 
-    <!-- 3. Action Buttons -->
-    <div class="button-group" style="max-width: 650px;">
-      <a href="https://square.link/u/LyxfVzwJ" target="_blank" rel="noopener" class="buy-btn">3 dozen - $30/week</a>
-      <a href="https://square.link/u/VOwaSMDB" target="_blank" rel="noopener" class="buy-btn">4 dozen - $35/week</a>
-      <a href="https://square.link/u/P7aKDQVQ" target="_blank" rel="noopener" class="buy-btn">5 dozen - $40/week</a>
-      <a href="https://square.link/u/DocXwg9x" target="_blank" rel="noopener" class="buy-btn" style="position: relative;">
-        6 dozen - $45/week
-        <span style="position: absolute; top: -12px; right: -15px; background: #c9642d; color: white; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; border-radius: 12px; transform: rotate(5deg); box-shadow: 0 2px 4px rgba(0,0,0,0.2);">Best Deal!</span>
-      </a>
-      <a href="mailto:dollardonuts.com@gmail.com" class="bulk-btn">Need more? Email Us</a>
+    <!-- 3. Subscription Slider -->
+    <div class="slider-container">
+      <div class="slider-header" id="slider-doz-text">4 Dozen</div>
+      <div class="slider-price">
+        <span id="slider-price-text">$36.00/week</span>
+        <span class="slider-badge" id="slider-badge">Most Popular!</span>
+      </div>
+      
+      <div class="slider-controls">
+        <button class="slider-btn" id="slider-minus">−</button>
+        <div class="segmented-bar">
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+          <div class="segment"></div>
+        </div>
+        <button class="slider-btn" id="slider-plus">+</button>
+      </div>
+      
+      <a href="#" target="_blank" rel="noopener" class="slider-checkout-btn" id="slider-checkout">Subscribe Now</a>
     </div>
 
     <!-- 5. Subscription How It Works -->
     <div class="card" style="max-width: 600px; text-align: left;">
       <h3 style="margin-bottom: 12px; color: var(--accent-dark);">How the Subscription Works</h3>
       <p style="margin-bottom: 12px; color: var(--muted);">By subscribing, you will receive <strong>official Krispy Kreme digital vouchers</strong> redeemable at any Krispy Kreme location for guaranteed fresh glazed donuts. They have no expiration date!</p>
-      <p style="color: var(--muted);"><strong>Weekly Delivery:</strong> You'll receive your vouchers via email on <strong>Friday night</strong> for any active subscriptions, and orders placed during the previous week. The weekly cutoff time to purchase is <strong>Friday at 11:00 PM ET</strong>.</p>
+      <p style="color: var(--muted);"><strong>Weekly Delivery:</strong> You'll receive your vouchers via email on <strong>Friday night</strong> for any active subscriptions, and orders placed during the week. The weekly cutoff time to purchase is <strong>Friday at 11:00 PM ET</strong>. You can pause or cancel your subscription at any time.</p>
     </div>
 
     <!-- 6. Savings & Community Info -->
@@ -232,6 +360,76 @@
   <script>
     const INITIAL_DONUTS_SOLD = 639; 
     document.getElementById('countValue').textContent = INITIAL_DONUTS_SOLD.toLocaleString();
+
+    // Slider Logic
+    const options = [
+      { dozens: 1, price: "$12.00", link: "https://square.link/u/YI3HyGcB" },
+      { dozens: 2, price: "$20.00", link: "https://square.link/u/qz9c7EX4" },
+      { dozens: 3, price: "$28.00", link: "https://square.link/u/LyxfVzwJ" },
+      { dozens: 4, price: "$36.00", link: "https://square.link/u/VOwaSMDB" },
+      { dozens: 5, price: "$44.00", link: "https://square.link/u/P7aKDQVQ" },
+      { dozens: 6, price: "$52.00", link: "https://square.link/u/DocXwg9x" },
+      { dozens: 7, price: "$60.00", link: "https://square.link/u/bA8HGLDG" },
+      { dozens: 8, price: "$68.00", link: "https://square.link/u/yJAL7S4G" },
+      { dozens: 9, price: "$76.00", link: "https://square.link/u/qugX8hug" },
+      { dozens: 10, price: "$84.00", link: "https://square.link/u/z8RMd59G" },
+      { dozens: 11, price: "$92.00", link: "https://square.link/u/Yr3XFTjD" },
+      { dozens: 12, price: "$100.00", link: "https://square.link/u/awfzyii7" }
+    ];
+
+    let currentSelectionIndex = 3; // Default 4 Dozen
+
+    const dozText = document.getElementById('slider-doz-text');
+    const priceText = document.getElementById('slider-price-text');
+    const badge = document.getElementById('slider-badge');
+    const segments = document.querySelectorAll('.segment');
+    const minusBtn = document.getElementById('slider-minus');
+    const plusBtn = document.getElementById('slider-plus');
+    const checkoutBtn = document.getElementById('slider-checkout');
+
+    function updateSlider() {
+      const opt = options[currentSelectionIndex];
+      dozText.textContent = opt.dozens + " Dozen";
+      priceText.textContent = opt.price + "/week";
+      checkoutBtn.href = opt.link;
+      
+      segments.forEach((seg, idx) => {
+        if (idx <= currentSelectionIndex) {
+          seg.classList.add('active');
+        } else {
+          seg.classList.remove('active');
+        }
+      });
+      
+      if (opt.dozens === 4) {
+        badge.textContent = "Most Popular!";
+        badge.style.display = "block";
+      } else if (opt.dozens === 12) {
+        badge.textContent = "Best Deal!";
+        badge.style.display = "block";
+      } else {
+        badge.style.display = "none";
+      }
+      
+      minusBtn.disabled = currentSelectionIndex === 0;
+      plusBtn.disabled = currentSelectionIndex === options.length - 1;
+    }
+
+    minusBtn.addEventListener('click', () => {
+      if (currentSelectionIndex > 0) {
+        currentSelectionIndex--;
+        updateSlider();
+      }
+    });
+
+    plusBtn.addEventListener('click', () => {
+      if (currentSelectionIndex < options.length - 1) {
+        currentSelectionIndex++;
+        updateSlider();
+      }
+    });
+    
+    updateSlider(); // Initial update
   </script>
 <script type="module" src="/index.tsx"></script>
 </body>
