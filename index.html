@@ -4,279 +4,453 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dollar-Donuts</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Load high-quality Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #fffaf5;
-      --accent: #f7a072;
-      --accent-dark: #d97a4a;
-      --muted: #6b6b6b;
-      --card: #fff;
+      --bg: #FDFBF7; /* Cozy luxury warm ivory/off-white */
+      --accent: #F79256; /* Vibrant glowing warm orange */
+      --accent-dark: #B85018; /* Highly readable contrast text/brownish-orange */
+      --text-dark: #2C1A11; /* Warm rich dark-chocolate for maximum text readability */
+      --muted: #726861; /* Soft earthy grey for supporting descriptions */
+      --card: #FFFFFF;
+      --card-border: #F1ECE4;
       --max-width: 800px;
+      --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
     body {
-      font-family: Inter, sans-serif;
+      font-family: var(--font-body);
       background-color: var(--bg);
-      color: #222;
+      color: var(--text-dark);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+    
     .container {
       max-width: var(--max-width);
       margin: auto;
-      padding: 40px 20px;
+      padding: 60px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
     }
+    
+    /* Elegant floating social proof counter badge */
     .counter {
-      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 28px;
     }
+    
     .counter h3 {
-      font-size: 1.1rem;
-      margin-bottom: 5px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       color: var(--muted);
-      font-weight: 400;
+      font-weight: 700;
+      font-family: var(--font-display);
     }
+    
     .counter .number {
-      font-size: 2.8rem;
-      font-weight: 900;
+      font-size: 1.15rem;
+      font-weight: 700;
       color: var(--accent-dark);
       display: inline-flex;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
+      background: #FFF5EE;
+      border: 1px solid #FADCCB;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      box-shadow: 0 4px 12px rgba(184, 80, 24, 0.04);
+      font-family: var(--font-display);
     }
+    
     .counter .donut {
-      font-size: 3.2rem;
-      animation: rotateBounce 2s ease-in-out infinite;
+      font-size: 1.35rem;
+      animation: rotateBounce 2.4s ease-in-out infinite;
       display: inline-block;
     }
+    
+    /* Clean, well-spaced Header section */
     header {
       margin-bottom: 40px;
     }
+    
     header h1 {
-      font-size: 3.2rem;
-      margin-bottom: 8px;
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      text-rendering: optimizeLegibility;
     }
+    
     header p {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       color: var(--muted);
+      font-weight: 400;
+      max-width: 500px;
+      margin: 0 auto;
     }
-    .button-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-      margin-bottom: 40px;
-    }
-    .buy-btn, .bulk-btn {
-      display: inline-block;
-      color: white;
-      font-weight: bold;
-      padding: 18px 32px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: transform 0.2s ease, background-color 0.2s ease;
-      text-align: center;
-      min-width: 220px;
-    }
-    .buy-btn {
-      background-color: var(--accent);
-      box-shadow: 0 4px 15px rgba(247, 160, 114, 0.3);
-    }
-    .buy-btn:hover {
-      background-color: var(--accent-dark);
-      transform: translateY(-2px);
-    }
-    .bulk-btn {
-      background-color: #c4c4c4;
-    }
-    .bulk-btn:hover {
-      background-color: #a9a9a9;
-      transform: translateY(-2px);
-    }
-    .charity-info {
-      font-size: 1.1rem;
-      max-width: 650px;
-      margin-bottom: 30px;
-      color: #444;
-    }
-    .charity-info a {
-      color: var(--accent-dark);
-      text-decoration: none;
-      font-weight: 600;
-    }
+    
+    /* Clean standard cards with smooth shadows */
     .card {
       background-color: var(--card);
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 32px;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 30px rgba(44, 26, 17, 0.03);
       margin-bottom: 30px;
       width: 100%;
-      max-width: 500px;
+      max-width: 560px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .delivery-details {
-      margin-bottom: 60px;
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 600px;
-    }
-    .facts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      width: 100%;
-      margin-bottom: 60px;
-    }
-    @media (max-width: 600px) {
-      .facts { grid-template-columns: 1fr; }
-    }
-    .facts .card {
-      margin-bottom: 0;
-      text-align: left;
-    }
-    .facts .card strong {
-      font-size: 1.1rem;
-      display: block;
-      margin-bottom: 8px;
-      color: var(--accent-dark);
-    }
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 20px;
-      width: 100%;
-      border-top: 1px solid #eee;
-      padding-top: 40px;
-    }
-    footer a {
-      color: var(--accent-dark);
-      text-decoration: none;
-    }
-    .highlight {
-      font-weight: bold;
-      color: #c9642d;
-    }
+    
+    /* Core configurator widget layout */
     .slider-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: 40px;
       width: 100%;
-      max-width: 500px;
+      max-width: 560px;
       background: var(--card);
-      padding: 30px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 36px 30px;
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 16px 45px rgba(44, 26, 17, 0.05);
     }
+    
     .slider-header {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--accent-dark);
-      margin-bottom: 5px;
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
     }
+    
     .slider-price {
-      font-size: 1.2rem;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
       color: var(--muted);
-      margin-bottom: 25px;
+      margin-bottom: 16px;
       position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
+    
+    /* Badge styling */
     .slider-badge {
-      position: absolute;
-      top: -15px;
-      right: -80px;
-      background: #c9642d;
+      background: var(--accent-dark);
       color: white;
-      padding: 4px 10px;
-      font-size: 0.85rem;
+      padding: 4px 12px;
+      font-size: 0.8rem;
       font-weight: 700;
+      border-radius: 9999px;
+      box-shadow: 0 3px 8px rgba(184, 80, 24, 0.2);
+      font-family: var(--font-display);
+      letter-spacing: 0.02em;
+    }
+    
+    #slider-per-donut-container {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      background-color: #FFF9F3;
+      border: 1px dashed #FADCCB;
+      padding: 10px 18px;
       border-radius: 12px;
-      transform: rotate(5deg);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      font-family: var(--font-display);
     }
-    @media (max-width: 480px) {
-      .slider-badge {
-        right: -30px;
-        top: -25px;
-      }
-    }
+    
+    /* Manual sliding controllers style */
     .slider-controls {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
       width: 100%;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
+    
     .slider-btn {
-      background: #fff4eb;
-      border: 1px solid #fce2ce;
+      background: #FFF5EE;
+      border: 1px solid #FADCCB;
       border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      font-size: 1.5rem;
+      width: 48px;
+      height: 48px;
+      font-size: 1.6rem;
       font-weight: bold;
-      color: #c9642d;
+      color: var(--accent-dark);
       cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: background 0.2s, transform 0.1s;
+      transition: background 0.2s, transform 0.1s, border-color 0.2s;
+      box-shadow: 0 2px 6px rgba(184, 80, 24, 0.03);
     }
+    
     .slider-btn:hover:not(:disabled) {
-      background: #fce2ce;
+      background: #FADCCB;
+      border-color: #F79256;
     }
+    
     .slider-btn:active:not(:disabled) {
-      transform: scale(0.95);
+      transform: scale(0.92);
     }
+    
     .slider-btn:disabled {
-      opacity: 0.5;
+      opacity: 0.35;
       cursor: not-allowed;
+      background: #FDFDFD;
+      border-color: #E6E6E6;
     }
+    
     .segmented-bar {
       display: flex;
       flex-grow: 1;
-      height: 24px;
-      gap: 3px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #eee;
+      height: 20px;
+      gap: 4px;
+      border-radius: 9999px;
+      padding: 3px;
+      background: #EFECE7;
+      border: 1px solid #E4DFD6;
     }
+    
     .segment {
       flex: 1;
-      background: #e2e2e2;
-      transition: background-color 0.2s ease;
+      background: #D8D4CC;
+      border-radius: 9999px;
+      transition: background-color 0.2s ease, transform 0.1s ease, filter 0.2s ease;
+      cursor: pointer;
     }
+    
+    .segment:hover {
+      filter: brightness(0.92);
+      transform: scaleY(1.15);
+    }
+    
+    .segment.active:hover {
+      filter: brightness(0.95);
+    }
+    
     .segment.active {
-      background: var(--accent);
+      background: linear-gradient(135deg, #F9A071 0%, #E36423 100%);
     }
+    
+    /* Modern highly-clickable primary subscribe button */
     .slider-checkout-btn {
       display: inline-block;
       color: white;
-      font-weight: bold;
-      padding: 18px 32px;
-      border-radius: 10px;
+      font-weight: 700;
+      font-family: var(--font-display);
+      padding: 18px 36px;
+      border-radius: 14px;
       text-decoration: none;
-      font-size: 1.2rem;
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      font-size: 1.25rem;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
       text-align: center;
-      min-width: 250px;
-      background-color: var(--accent);
-      box-shadow: 0 4px 15px rgba(247, 160, 114, 0.3);
+      width: 100%;
+      background: linear-gradient(135deg, #F79F6E 0%, #EE6E2F 100%);
+      box-shadow: 0 8px 24px rgba(238, 110, 47, 0.3);
     }
+    
     .slider-checkout-btn:hover {
-      background-color: var(--accent-dark);
       transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(238, 110, 47, 0.4);
     }
+    
+    .slider-checkout-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* How the Subscription Works card styling updates */
+    .works-header {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+    
+    .works-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .works-icon {
+      background: #FFF5EE;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      border: 1px solid #FADCCB;
+    }
+    
+    .works-content h4 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-dark);
+    }
+    
+    .works-content p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    
+    /* Bento Grid for Unbeatable Value & Building Community */
+    .facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+    
+    @media (max-width: 640px) {
+      .facts {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+    
+    .facts .card {
+      margin-bottom: 0;
+      text-align: left;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    
+    .facts .card strong {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      display: block;
+      margin-bottom: 12px;
+      color: var(--text-dark);
+      font-weight: 700;
+      position: relative;
+    }
+    
+    .facts .community-card {
+      background-color: #FFF8F4;
+      border: 1px solid #FADCCB;
+    }
+    
+    .facts .community-title {
+      color: var(--accent-dark) !important;
+    }
+    
+    /* Secondary Action Button (Manage Subscription) */
+    .manage-link-btn {
+      display: inline-block;
+      color: var(--muted);
+      font-weight: 600;
+      font-family: var(--font-display);
+      padding: 12px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      text-align: center;
+      border: 1px solid #E6E1D8;
+      background-color: transparent;
+      margin-bottom: 40px;
+    }
+    
+    .manage-link-btn:hover {
+      background-color: #F5EFEB;
+      border-color: #D6CFC4;
+      color: var(--text-dark);
+    }
+    
+    /* Highly polished fine footer layout */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 20px;
+      width: 100%;
+      border-top: 1px solid #EAE4DA;
+      padding-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    footer a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    
+    footer a:hover {
+      color: var(--text-dark);
+    }
+    
+    .highlight {
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+    
+    .access-portal-btn {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border: 1px solid #E6E1D8;
+      border-radius: 8px;
+      display: inline-block;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      background-color: #FFFFFF;
+      font-family: var(--font-display);
+    }
+    
+    .access-portal-btn:hover {
+      background-color: #F5EFEB;
+      border-color: #CFC7BC;
+      color: var(--text-dark);
+    }
+    
     @keyframes rotateBounce {
-      0% { transform: rotate(-10deg) translateY(5px); }
-      50% { transform: rotate(10deg) translateY(-5px); }
-      100% { transform: rotate(-10deg) translateY(5px); }
+      0% { transform: rotate(-8deg) translateY(3px); }
+      50% { transform: rotate(8deg) translateY(-3px); }
+      100% { transform: rotate(-8deg) translateY(3px); }
     }
   </style>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body>
   <div class="container">
@@ -294,12 +468,18 @@
       <p>Who said donuts have to be bad for you?</p>
     </header>
 
-    <!-- 3. Subscription Slider -->
+    <!-- 3. Subscription Slider Card -->
     <div class="slider-container">
       <div class="slider-header" id="slider-doz-text">4 Dozen</div>
       <div class="slider-price">
         <span id="slider-price-text">$36.00/week</span>
         <span class="slider-badge" id="slider-badge">Most Popular!</span>
+      </div>
+
+      <!-- Cost-per-donut Badge/Savings indicator -->
+      <div id="slider-per-donut-container">
+        <span>Just </span><strong style="color: var(--accent-dark); font-size: 1.25rem;" id="slider-per-donut-text">$0.75</strong><span> per donut</span>
+        <span style="color: var(--muted); font-size: 0.9rem; font-weight: normal; text-decoration: line-through; margin-left: 5px;">$1.28 retail</span>
       </div>
       
       <div class="slider-controls">
@@ -324,35 +504,51 @@
       <a href="#" target="_blank" rel="noopener" class="slider-checkout-btn" id="slider-checkout">Subscribe Now</a>
     </div>
 
-    <!-- 5. Subscription How It Works -->
-    <div class="card" style="max-width: 600px; text-align: left;">
-      <h3 style="margin-bottom: 12px; color: var(--accent-dark);">How the Subscription Works</h3>
-      <p style="margin-bottom: 12px; color: var(--muted);">By subscribing, you will receive <strong>official Krispy Kreme digital vouchers</strong> redeemable at any Krispy Kreme location for guaranteed fresh glazed donuts. They have no expiration date!</p>
-      <p style="color: var(--muted);"><strong>Weekly Delivery:</strong> You'll receive your vouchers via email on <strong>Friday night</strong> for any active subscriptions, and orders placed during the week. The weekly cutoff time to purchase is <strong>Friday at 11:00 PM ET</strong>. You can pause or cancel your subscription at any time.</p>
+    <!-- 5. Subscription How It Works (Formatted as structured interactive steps) -->
+    <div class="card" style="text-align: left;">
+      <h3 class="works-header">How the Subscription Works</h3>
+      
+      <div class="works-item">
+        <div class="works-icon">🎟️</div>
+        <div class="works-content">
+          <h4>Voucher Delivery</h4>
+          <p>By subscribing, you will receive <strong>official Krispy Kreme digital vouchers</strong> redeemable at any Krispy Kreme location for guaranteed fresh glazed donuts. They have no expiration date!</p>
+        </div>
+      </div>
+      
+      <div class="works-item" style="margin-bottom: 0;">
+        <div class="works-icon">📬</div>
+        <div class="works-content">
+          <h4>Weekly Delivery & Simple Management</h4>
+          <p>You'll receive your vouchers via email on <strong>Friday night</strong> for any active subscriptions, and orders placed during the week. The weekly cutoff time to purchase is <strong>Friday at 11:00 PM ET</strong>. You can pause or cancel your subscription at any time.</p>
+        </div>
+      </div>
     </div>
 
-    <!-- 6. Savings & Community Info -->
-    <section class="facts" style="max-width: 700px; margin-bottom: 30px; gap: 20px;">
-      <div class="card" style="text-align: center; margin: 0 auto; width: 100%;">
+    <!-- 6. Savings & Community Info Grid -->
+    <section class="facts">
+      <div class="card" style="text-align: center;">
         <strong>Unbeatable Value</strong>
-        <p style="color:var(--muted)">Our subscriptions cost as low as <strong>$7.50 per dozen</strong> Significantly cheaper than Krispy Kreme's regular price of <strong style="text-decoration: line-through;">$15.39</strong></p>
+        <p style="color: var(--muted); font-size: 0.95rem;">Our subscriptions cost as low as <strong>$7.50 per dozen</strong>. Significantly cheaper than Krispy Kreme's regular price of <strong style="text-decoration: line-through;">$15.39</strong></p>
       </div>
 
-      <div class="card" style="text-align: center; margin: 0 auto; width: 100%; background-color: #fff4eb; border: 1px solid #fce2ce;">
-        <strong style="color: #c9642d; font-size: 1.2rem;">Building Community</strong>
-        <p style="color: #555;">Our mission is bigger than providing donuts at a sweet price. Our  goal is to help build and nurture relationships by working hand-in-hand with churches, turning our weekly subscription into a way to strengthen community and support impactful causes.</p>
+      <div class="card community-card text-center">
+        <strong class="community-title">Building Community</strong>
+        <p style="color: #4C3C32; font-size: 0.95rem;">Our mission is bigger than providing donuts at a sweet price. Our goal is to help build and nurture relationships by working hand-in-hand with churches, turning our weekly subscription into a way to strengthen community and support impactful causes.</p>
       </div>
     </section>
 
-    <a href="manage-subscription.html" class="bulk-btn" style="margin-bottom: 40px;">Manage Subscription</a>
+    <!-- Custom elegant button for Manage Subscription -->
+    <a href="manage-subscription.html" class="manage-link-btn">Manage Subscription</a>
 
+    <!-- Footer of the page -->
     <footer>
       <p>Questions? Email <a href="mailto:dollardonuts.com@gmail.com">dollardonuts.com@gmail.com</a></p>
       <p>Follow our <a href="https://www.instagram.com/dollar.donuts/">Instagram</a></p>
       <p><span class="highlight">Made by students with ❤️</span></p>
       <p>Unavailable in CT and PR</p>
-      <div style="margin-top: 15px;">
-        <a href="https://dollar-donuts-sales-portal-163881030522.us-west2.run.app/" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: none; font-size: 0.85rem; padding: 6px 12px; border: 1px solid #ccc; border-radius: 6px; display: inline-block; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#f5f5f5'" onmouseout="this.style.backgroundColor='transparent'">Access Portal</a>
+      <div style="margin-top: 5px;">
+        <a href="https://dollar-donuts-sales-portal-163881030522.us-west2.run.app/" target="_blank" rel="noopener" class="access-portal-btn">Access Portal</a>
       </div>
     </footer>
   </div>
@@ -363,18 +559,18 @@
 
     // Slider Logic
     const options = [
-      { dozens: 1, price: "$12.00", link: "https://square.link/u/YI3HyGcB" },
-      { dozens: 2, price: "$20.00", link: "https://square.link/u/qz9c7EX4" },
-      { dozens: 3, price: "$28.00", link: "https://square.link/u/LyxfVzwJ" },
-      { dozens: 4, price: "$36.00", link: "https://square.link/u/VOwaSMDB" },
-      { dozens: 5, price: "$44.00", link: "https://square.link/u/P7aKDQVQ" },
-      { dozens: 6, price: "$52.00", link: "https://square.link/u/DocXwg9x" },
-      { dozens: 7, price: "$60.00", link: "https://square.link/u/bA8HGLDG" },
-      { dozens: 8, price: "$68.00", link: "https://square.link/u/yJAL7S4G" },
-      { dozens: 9, price: "$76.00", link: "https://square.link/u/qugX8hug" },
-      { dozens: 10, price: "$84.00", link: "https://square.link/u/z8RMd59G" },
-      { dozens: 11, price: "$92.00", link: "https://square.link/u/Yr3XFTjD" },
-      { dozens: 12, price: "$100.00", link: "https://square.link/u/awfzyii7" }
+      { dozens: 1, price: "$12.00", perDonut: "$1.00", link: "https://square.link/u/YI3HyGcB" },
+      { dozens: 2, price: "$20.00", perDonut: "$0.83", link: "https://square.link/u/qz9c7EX4" },
+      { dozens: 3, price: "$28.00", perDonut: "$0.78", link: "https://square.link/u/LyxfVzwJ" },
+      { dozens: 4, price: "$36.00", perDonut: "$0.75", link: "https://square.link/u/VOwaSMDB" },
+      { dozens: 5, price: "$44.00", perDonut: "$0.73", link: "https://square.link/u/P7aKDQVQ" },
+      { dozens: 6, price: "$52.00", perDonut: "$0.72", link: "https://square.link/u/DocXwg9x" },
+      { dozens: 7, price: "$60.00", perDonut: "$0.715", link: "https://square.link/u/bA8HGLDG" },
+      { dozens: 8, price: "$68.00", perDonut: "$0.71", link: "https://square.link/u/yJAL7S4G" },
+      { dozens: 9, price: "$76.00", perDonut: "$0.705", link: "https://square.link/u/qugX8hug" },
+      { dozens: 10, price: "$84.00", perDonut: "$0.70", link: "https://square.link/u/z8RMd59G" },
+      { dozens: 11, price: "$92.00", perDonut: "$0.695", link: "https://square.link/u/Yr3XFTjD" },
+      { dozens: 12, price: "$100.00", perDonut: "$0.69", link: "https://square.link/u/awfzyii7" }
     ];
 
     let currentSelectionIndex = 3; // Default 4 Dozen
@@ -382,6 +578,7 @@
     const dozText = document.getElementById('slider-doz-text');
     const priceText = document.getElementById('slider-price-text');
     const badge = document.getElementById('slider-badge');
+    const perDonutText = document.getElementById('slider-per-donut-text');
     const segments = document.querySelectorAll('.segment');
     const minusBtn = document.getElementById('slider-minus');
     const plusBtn = document.getElementById('slider-plus');
@@ -391,6 +588,7 @@
       const opt = options[currentSelectionIndex];
       dozText.textContent = opt.dozens + " Dozen";
       priceText.textContent = opt.price + "/week";
+      perDonutText.textContent = opt.perDonut;
       checkoutBtn.href = opt.link;
       
       segments.forEach((seg, idx) => {
@@ -427,6 +625,13 @@
         currentSelectionIndex++;
         updateSlider();
       }
+    });
+
+    segments.forEach((seg, idx) => {
+      seg.addEventListener('click', () => {
+        currentSelectionIndex = idx;
+        updateSlider();
+      });
     });
     
     updateSlider(); // Initial update
